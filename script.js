@@ -5,7 +5,7 @@
 // Replace MY_API_KEY with your own YouTube Data API key.
 // ======================================================
 
-const API_KEY = "api_key";
+const API_KEY = "AIzaSyALf_EDaQ3GmXy_6KKul4DT3iH-xTmacSw";
 
 const CHANNEL_HANDLE = "@ahmedmvsd";
 
