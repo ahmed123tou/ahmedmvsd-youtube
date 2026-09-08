@@ -2,7 +2,7 @@
 // AHMED MVSD YOUTUBE STATS
 // ======================================================
 // WARNING: Keep your API key private.
-// Replace MY_API_KEY with your own YouTube Data API key.
+// Replace API_KEY with your own YouTube Data API key.
 // ======================================================
 
 const API_KEY = "AIzaSyALf_EDaQ3GmXy_6KKul4DT3iH-xTmacSw";
@@ -56,7 +56,8 @@ function formatNumber(number) {
 
 function formatDate(dateString) {
 
-    const date = new Date(dateString);
+    const date =
+        new Date(dateString);
 
     return date.toLocaleDateString(
         "en-US",
@@ -666,6 +667,21 @@ function escapeHtml(
 
 
 // ======================================================
+// ESCAPE URL
+// ======================================================
+
+function escapeUrl(
+    url
+) {
+
+    return escapeHtml(
+        url
+    );
+
+}
+
+
+// ======================================================
 // TOP VIDEOS
 // ======================================================
 
@@ -765,6 +781,324 @@ function displayTopVideos() {
 
 
 // ======================================================
+// BIO LINK INFORMATION
+// ======================================================
+
+function getBioLinkInfo(
+    url
+) {
+
+    let hostname = "";
+
+
+    try {
+
+        hostname =
+            new URL(url)
+                .hostname
+                .toLowerCase()
+                .replace(
+                    /^www\./,
+                    ""
+                );
+
+    } catch {
+
+        hostname = "";
+
+    }
+
+
+    // DISCORD
+
+    if (
+        hostname === "discord.gg" ||
+        hostname === "discord.com" ||
+        hostname === "discordapp.com"
+    ) {
+
+        return {
+            icon: "💬",
+            title: "Discord"
+        };
+
+    }
+
+
+    // INSTAGRAM
+
+    if (
+        hostname === "instagram.com" ||
+        hostname === "instagr.am"
+    ) {
+
+        return {
+            icon: "📸",
+            title: "Instagram"
+        };
+
+    }
+
+
+    // TIKTOK
+
+    if (
+        hostname === "tiktok.com"
+    ) {
+
+        return {
+            icon: "🎵",
+            title: "TikTok"
+        };
+
+    }
+
+
+    // X / TWITTER
+
+    if (
+        hostname === "twitter.com" ||
+        hostname === "x.com"
+    ) {
+
+        return {
+            icon: "𝕏",
+            title: "X / Twitter"
+        };
+
+    }
+
+
+    // YOUTUBE
+
+    if (
+        hostname === "youtube.com" ||
+        hostname === "youtu.be"
+    ) {
+
+        return {
+            icon: "▶️",
+            title: "YouTube"
+        };
+
+    }
+
+
+    // GITHUB
+
+    if (
+        hostname === "github.com"
+    ) {
+
+        return {
+            icon: "🐙",
+            title: "GitHub"
+        };
+
+    }
+
+
+    // TWITCH
+
+    if (
+        hostname === "twitch.tv"
+    ) {
+
+        return {
+            icon: "🎮",
+            title: "Twitch"
+        };
+
+    }
+
+
+    // FACEBOOK
+
+    if (
+        hostname === "facebook.com" ||
+        hostname === "fb.com"
+    ) {
+
+        return {
+            icon: "👤",
+            title: "Facebook"
+        };
+
+    }
+
+
+    // SNAPCHAT
+
+    if (
+        hostname === "snapchat.com"
+    ) {
+
+        return {
+            icon: "👻",
+            title: "Snapchat"
+        };
+
+    }
+
+
+    // REDDIT
+
+    if (
+        hostname === "reddit.com" ||
+        hostname === "redd.it"
+    ) {
+
+        return {
+            icon: "🤖",
+            title: "Reddit"
+        };
+
+    }
+
+
+    // SPOTIFY
+
+    if (
+        hostname === "spotify.com" ||
+        hostname === "open.spotify.com"
+    ) {
+
+        return {
+            icon: "🎧",
+            title: "Spotify"
+        };
+
+    }
+
+
+    // STEAM
+
+    if (
+        hostname === "steamcommunity.com" ||
+        hostname === "store.steampowered.com"
+    ) {
+
+        return {
+            icon: "🎮",
+            title: "Steam"
+        };
+
+    }
+
+
+    // TELEGRAM
+
+    if (
+        hostname === "t.me" ||
+        hostname === "telegram.me" ||
+        hostname === "telegram.org"
+    ) {
+
+        return {
+            icon: "✈️",
+            title: "Telegram"
+        };
+
+    }
+
+
+    // LINKTREE
+
+    if (
+        hostname === "linktr.ee"
+    ) {
+
+        return {
+            icon: "🔗",
+            title: "Linktree"
+        };
+
+    }
+
+
+    // PATREON
+
+    if (
+        hostname === "patreon.com"
+    ) {
+
+        return {
+            icon: "❤️",
+            title: "Patreon"
+        };
+
+    }
+
+
+    // KICK
+
+    if (
+        hostname === "kick.com"
+    ) {
+
+        return {
+            icon: "🟢",
+            title: "Kick"
+        };
+
+    }
+
+
+    // NORMAL WEBSITE
+
+    return {
+        icon: "🌐",
+        title: "Website"
+    };
+
+}
+
+
+// ======================================================
+// GET CLEAN DISPLAY URL
+// ======================================================
+
+function getDisplayUrl(
+    url
+) {
+
+    try {
+
+        const parsed =
+            new URL(url);
+
+
+        let result =
+            parsed.hostname
+                .replace(
+                    /^www\./,
+                    ""
+                );
+
+
+        if (
+            parsed.pathname &&
+            parsed.pathname !== "/"
+        ) {
+
+            result +=
+                parsed.pathname;
+
+        }
+
+
+        return result;
+
+    } catch {
+
+        return url;
+
+    }
+
+}
+
+
+// ======================================================
 // BIO LINKS
 // ======================================================
 
@@ -778,6 +1112,15 @@ function displayBioLinks(
         );
 
 
+    if (!container) {
+
+        return;
+
+    }
+
+
+    // Find every HTTPS/HTTP link
+
     const urlRegex =
         /https?:\/\/[^\s<>"']+/gi;
 
@@ -788,14 +1131,33 @@ function displayBioLinks(
         ) || [];
 
 
+    // Remove punctuation that can be attached
+    // to the end of a URL in a description.
+
+    const cleanedLinks =
+        matches.map(
+            url =>
+                url.replace(
+                    /[),.!?;:'"]+$/,
+                    ""
+                )
+        );
+
+
+    // Remove duplicates
+
     const uniqueLinks =
-        [...new Set(matches)];
+        [...new Set(cleanedLinks)];
 
 
     if (uniqueLinks.length === 0) {
 
         container.innerHTML =
-            "<span style='color:#666'>No links found in the channel description.</span>";
+            `
+                <div class="bio-no-links">
+                    No links found in the channel description.
+                </div>
+            `;
 
         return;
 
@@ -805,15 +1167,59 @@ function displayBioLinks(
     container.innerHTML =
         uniqueLinks
             .map(
-                url => `
-                    <a
-                        href="${url}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        ${escapeHtml(url)}
-                    </a>
-                `
+                url => {
+
+                    const info =
+                        getBioLinkInfo(
+                            url
+                        );
+
+
+                    const displayUrl =
+                        getDisplayUrl(
+                            url
+                        );
+
+
+                    return `
+                        <a
+                            class="bio-link"
+                            href="${escapeUrl(url)}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <div class="bio-link-icon">
+                                ${info.icon}
+                            </div>
+
+
+                            <div class="bio-link-content">
+
+                                <div class="bio-link-title">
+                                    ${escapeHtml(
+                                        info.title
+                                    )}
+                                </div>
+
+
+                                <div class="bio-link-url">
+                                    ${escapeHtml(
+                                        displayUrl
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <div class="bio-link-arrow">
+                                →
+                            </div>
+
+                        </a>
+                    `;
+
+                }
             )
             .join("");
 
@@ -877,6 +1283,7 @@ function displayLatestVideos() {
                             alt=""
                         >
 
+
                         <div>
 
                             <h3>
@@ -884,6 +1291,7 @@ function displayLatestVideos() {
                                     video.snippet.title
                                 )}
                             </h3>
+
 
                             <div class="video-meta">
 
