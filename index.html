@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>𝑨𝒉𝒎𝒆𝒅 — Live Stats</title>
-<link rel="icon" type="image/jpeg" href="https://files.catbox.moe/tmwglr.jpg">
+
+    <link
+        rel="icon"
+        type="image/jpeg"
+        href="https://files.catbox.moe/tmwglr.jpg"
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -35,20 +41,25 @@
 
             <div class="stat">
                 <div class="stat-title">Subscribers</div>
+
                 <div id="subscribers" class="stat-number">
                     Loading...
                 </div>
             </div>
 
+
             <div class="stat">
                 <div class="stat-title">Views</div>
+
                 <div id="views" class="stat-number">
                     Loading...
                 </div>
             </div>
 
+
             <div class="stat">
                 <div class="stat-title">Videos</div>
+
                 <div id="videos" class="stat-number">
                     Loading...
                 </div>
@@ -60,9 +71,13 @@
         <!-- LIVE STATUS -->
 
         <div class="live">
+
             <span class="live-dot"></span>
+
             LIVE STATS
+
         </div>
+
 
         <div id="updated" class="updated">
             Loading...
@@ -71,14 +86,20 @@
 
         <!-- SEE MORE -->
 
-        <button id="seeMoreButton" class="see-more">
+        <button
+            id="seeMoreButton"
+            class="see-more"
+        >
             See More
         </button>
 
 
         <!-- EXTENDED DASHBOARD -->
 
-        <section id="moreSection" class="more-section hidden">
+        <section
+            id="moreSection"
+            class="more-section hidden"
+        >
 
 
             <!-- CHANNEL INFORMATION -->
@@ -87,36 +108,63 @@
 
                 <h2>Channel Information</h2>
 
+
                 <div class="info-grid">
 
                     <div class="info-box">
+
                         <span>Name</span>
-                        <strong id="infoName">—</strong>
+
+                        <strong id="infoName">
+                            —
+                        </strong>
+
                     </div>
 
+
                     <div class="info-box">
+
                         <span>Username</span>
-                        <strong id="infoUsername">—</strong>
+
+                        <strong id="infoUsername">
+                            —
+                        </strong>
+
                     </div>
 
+
                     <div class="info-box">
+
                         <span>Created</span>
-                        <strong id="createdDate">—</strong>
+
+                        <strong id="createdDate">
+                            —
+                        </strong>
+
                     </div>
 
+
                     <div class="info-box">
+
                         <span>Channel Age</span>
-                        <strong id="channelAge">—</strong>
+
+                        <strong id="channelAge">
+                            —
+                        </strong>
+
                     </div>
 
                 </div>
 
+
                 <div class="description">
+
                     <h3>Description</h3>
 
                     <p id="channelDescription">
                         Loading...
                     </p>
+
                 </div>
 
             </div>
@@ -128,31 +176,61 @@
 
                 <h2>Total Statistics</h2>
 
+
                 <div class="big-stats">
 
                     <div class="big-stat">
+
                         <span>Subscribers</span>
-                        <strong id="totalSubscribers">—</strong>
+
+                        <strong id="totalSubscribers">
+                            —
+                        </strong>
+
                     </div>
 
+
                     <div class="big-stat">
+
                         <span>Total Views</span>
-                        <strong id="totalViews">—</strong>
+
+                        <strong id="totalViews">
+                            —
+                        </strong>
+
                     </div>
 
+
                     <div class="big-stat">
+
                         <span>Total Videos</span>
-                        <strong id="totalVideos">—</strong>
+
+                        <strong id="totalVideos">
+                            —
+                        </strong>
+
                     </div>
 
+
                     <div class="big-stat">
+
                         <span>Total Likes</span>
-                        <strong id="totalLikes">—</strong>
+
+                        <strong id="totalLikes">
+                            —
+                        </strong>
+
                     </div>
 
+
                     <div class="big-stat">
+
                         <span>Total Comments</span>
-                        <strong id="totalComments">—</strong>
+
+                        <strong id="totalComments">
+                            —
+                        </strong>
+
                     </div>
 
                 </div>
@@ -166,30 +244,39 @@
 
                 <h2>Top Videos</h2>
 
+
                 <div class="top-video-grid">
 
                     <div class="top-video">
+
                         <h3>Most Viewed</h3>
 
                         <div id="mostViewed">
                             Loading...
                         </div>
+
                     </div>
 
+
                     <div class="top-video">
+
                         <h3>Most Liked</h3>
 
                         <div id="mostLiked">
                             Loading...
                         </div>
+
                     </div>
 
+
                     <div class="top-video">
+
                         <h3>Most Commented</h3>
 
                         <div id="mostCommented">
                             Loading...
                         </div>
+
                     </div>
 
                 </div>
@@ -203,7 +290,10 @@
 
                 <h2>Links in Bio</h2>
 
-                <div id="bioLinks" class="links">
+                <div
+                    id="bioLinks"
+                    class="links"
+                >
                     Loading...
                 </div>
 
@@ -216,7 +306,10 @@
 
                 <h2>Latest Videos</h2>
 
-                <div id="latestVideos" class="latest-videos">
+                <div
+                    id="latestVideos"
+                    class="latest-videos"
+                >
                     Loading...
                 </div>
 
@@ -229,21 +322,37 @@
 
                 <h2>Analytics</h2>
 
+
                 <div class="analytics-filters">
 
-                    <button class="filter active" data-metric="views">
+                    <button
+                        class="filter active"
+                        data-metric="views"
+                    >
                         Views
                     </button>
 
-                    <button class="filter" data-metric="subscribers">
+
+                    <button
+                        class="filter"
+                        data-metric="subscribers"
+                    >
                         Subscribers
                     </button>
 
-                    <button class="filter" data-metric="likes">
+
+                    <button
+                        class="filter"
+                        data-metric="likes"
+                    >
                         Likes
                     </button>
 
-                    <button class="filter" data-metric="comments">
+
+                    <button
+                        class="filter"
+                        data-metric="comments"
+                    >
                         Comments
                     </button>
 
@@ -256,17 +365,21 @@
                         1 Hour
                     </button>
 
+
                     <button class="time">
                         10 Hours
                     </button>
+
 
                     <button class="time">
                         1 Day
                     </button>
 
+
                     <button class="time">
                         5 Days
                     </button>
+
 
                     <div class="custom-time">
 
@@ -277,13 +390,17 @@
                             value="7"
                         >
 
+
                         <select id="customUnit">
 
                             <option value="hour">
                                 Hours
                             </option>
 
-                            <option value="day" selected>
+                            <option
+                                value="day"
+                                selected
+                            >
                                 Days
                             </option>
 
@@ -301,6 +418,7 @@
 
                         </select>
 
+
                         <button id="customApply">
                             Apply
                         </button>
@@ -316,15 +434,17 @@
                         📊
                     </div>
 
+
                     <h3 id="analyticsTitle">
                         Views
                     </h3>
 
+
                     <p>
-                        Detailed historical YouTube Analytics data
-                        requires YouTube Analytics authorization from
-                        the channel owner.
+                        Live public YouTube statistics
+                        are displayed here.
                     </p>
+
 
                     <span>
                         Public API mode
@@ -337,30 +457,38 @@
 
                     <div class="analytics-card">
 
-                        <strong>Devices</strong>
+                        <strong>
+                            Devices
+                        </strong>
 
                         <p>
-                            Requires YouTube Analytics access
+                            Public channel statistics
                         </p>
 
                     </div>
 
+
                     <div class="analytics-card">
 
-                        <strong>Audience Gender</strong>
+                        <strong>
+                            Audience
+                        </strong>
 
                         <p>
-                            Requires YouTube Analytics access
+                            Public channel statistics
                         </p>
 
                     </div>
 
+
                     <div class="analytics-card">
 
-                        <strong>Historical Data</strong>
+                        <strong>
+                            Historical Data
+                        </strong>
 
                         <p>
-                            Requires YouTube Analytics access
+                            Live public statistics
                         </p>
 
                     </div>
@@ -374,6 +502,7 @@
     </main>
 
 </div>
+
 
 <script src="script.js"></script>
 
