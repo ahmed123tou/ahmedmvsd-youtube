@@ -1,7 +1,11 @@
+
 // ======================================================
 // AHMED MVSD YOUTUBE STATS
 // ======================================================
-//WARNING: stop there we know you gonna steal the API key am gonna update it if i see change it//
+// WARNING: Keep your API key private.
+// Replace MY_API_KEY with your own YouTube Data API key.
+// ======================================================
+
 const API_KEY = "AIzaSyALf_EDaQ3GmXy_6KKul4DT3iH-xTmacSw";
 
 const CHANNEL_HANDLE = "@ahmedmvsd";
@@ -297,6 +301,81 @@ async function getAllVideos(
 
 
 // ======================================================
+// CALCULATE VIDEO TOTALS
+// ======================================================
+
+function calculateVideoTotals() {
+
+    let totalViews = 0;
+
+    let totalLikes = 0;
+
+    let totalComments = 0;
+
+
+    allVideos.forEach(video => {
+
+        totalViews +=
+            Number(
+                video.statistics?.viewCount || 0
+            );
+
+
+        totalLikes +=
+            Number(
+                video.statistics?.likeCount || 0
+            );
+
+
+        totalComments +=
+            Number(
+                video.statistics?.commentCount || 0
+            );
+
+    });
+
+
+    return {
+        totalViews,
+        totalLikes,
+        totalComments
+    };
+
+}
+
+
+// ======================================================
+// GET BEST AVAILABLE VIEW COUNT
+// ======================================================
+
+function getFinalViewCount(
+    channelViews
+) {
+
+    const calculatedViews =
+        calculateVideoTotals().totalViews;
+
+
+    const apiViews =
+        Number(channelViews || 0);
+
+
+    // Prefer YouTube's channel view count.
+    // If it returns 0, use the sum of public video views.
+
+    if (apiViews > 0) {
+
+        return apiViews;
+
+    }
+
+
+    return calculatedViews;
+
+}
+
+
+// ======================================================
 // UPDATE MAIN STATS
 // ======================================================
 
@@ -350,48 +429,6 @@ function updateMainStats(
 
 
 // ======================================================
-// VIDEO STATISTICS
-// ======================================================
-
-function calculateVideoTotals() {
-
-    let totalViews = 0;
-
-    let totalLikes = 0;
-
-    let totalComments = 0;
-
-
-    allVideos.forEach(video => {
-
-        totalViews +=
-            Number(
-                video.statistics?.viewCount || 0
-            );
-
-        totalLikes +=
-            Number(
-                video.statistics?.likeCount || 0
-            );
-
-        totalComments +=
-            Number(
-                video.statistics?.commentCount || 0
-            );
-
-    });
-
-
-    return {
-        totalViews,
-        totalLikes,
-        totalComments
-    };
-
-}
-
-
-// ======================================================
 // CHANNEL INFORMATION
 // ======================================================
 
@@ -403,12 +440,17 @@ function displayChannelInfo(
         channel.snippet;
 
 
+    const avatarUrl =
+        snippet.thumbnails?.high?.url ||
+        snippet.thumbnails?.medium?.url ||
+        snippet.thumbnails?.default?.url ||
+        "";
+
+
     document.getElementById(
         "avatar"
     ).src =
-        snippet.thumbnails?.high?.url ||
-        snippet.thumbnails?.default?.url ||
-        "";
+        avatarUrl;
 
 
     document.getElementById(
@@ -476,12 +518,10 @@ function displayTotals(
         calculateVideoTotals();
 
 
-    // If YouTube channel viewCount is 0,
-    // use the public video totals as a fallback.
     const totalViews =
-        channelViews > 0
-            ? channelViews
-            : totals.totalViews;
+        getFinalViewCount(
+            channelViews
+        );
 
 
     document.getElementById(
@@ -616,8 +656,10 @@ function escapeHtml(
     const div =
         document.createElement("div");
 
+
     div.textContent =
         text || "";
+
 
     return div.innerHTML;
 
@@ -637,15 +679,18 @@ function displayTopVideos() {
         ).textContent =
             "No videos found.";
 
+
         document.getElementById(
             "mostLiked"
         ).textContent =
             "No videos found.";
 
+
         document.getElementById(
             "mostCommented"
         ).textContent =
             "No videos found.";
+
 
         return;
 
@@ -896,6 +941,10 @@ async function loadEverything() {
             "Updating...";
 
 
+        // ----------------------------------------------
+        // CHANNEL
+        // ----------------------------------------------
+
         const channelResponse =
             await getChannel();
 
@@ -943,12 +992,9 @@ async function loadEverything() {
         );
 
 
-        updateMainStats(
-            subscribers,
-            channelViews,
-            videoCount
-        );
-
+        // ----------------------------------------------
+        // GET UPLOADS
+        // ----------------------------------------------
 
         const uploadsPlaylist =
             channelData
@@ -971,22 +1017,59 @@ async function loadEverything() {
         }
 
 
+        // ----------------------------------------------
+        // CALCULATE FINAL VIEWS
+        // ----------------------------------------------
+
         const finalViews =
-            displayTotals(
-                subscribers,
-                channelViews,
-                videoCount
+            getFinalViewCount(
+                channelViews
             );
 
+
+        // ----------------------------------------------
+        // UPDATE MAIN STATS
+        // ----------------------------------------------
+
+        updateMainStats(
+            subscribers,
+            finalViews,
+            videoCount
+        );
+
+
+        // ----------------------------------------------
+        // EXTENDED STATS
+        // ----------------------------------------------
+
+        displayTotals(
+            subscribers,
+            channelViews,
+            videoCount
+        );
+
+
+        // ----------------------------------------------
+        // VIDEOS
+        // ----------------------------------------------
 
         displayTopVideos();
 
         displayLatestVideos();
 
+
+        // ----------------------------------------------
+        // BIO LINKS
+        // ----------------------------------------------
+
         displayBioLinks(
             channelData.snippet.description || ""
         );
 
+
+        // ----------------------------------------------
+        // UPDATED TIME
+        // ----------------------------------------------
 
         updatedElement.textContent =
             "Last updated: " +
@@ -999,13 +1082,21 @@ async function loadEverything() {
             channelData
         );
 
+
         console.log(
             "Videos:",
             allVideos
         );
 
+
         console.log(
-            "Total calculated views:",
+            "Channel API views:",
+            channelViews
+        );
+
+
+        console.log(
+            "Final displayed views:",
             finalViews
         );
 
@@ -1021,8 +1112,10 @@ async function loadEverything() {
         subscribersElement.textContent =
             "Error";
 
+
         viewsElement.textContent =
             "Error";
+
 
         videosElement.textContent =
             "Error";
@@ -1068,6 +1161,7 @@ document
                     "hidden"
                 );
 
+
                 button.textContent =
                     "See Less";
 
@@ -1086,6 +1180,7 @@ document
                 section.classList.add(
                     "hidden"
                 );
+
 
                 button.textContent =
                     "See More";
@@ -1228,3 +1323,4 @@ setInterval(
     loadEverything,
     30000
 );
+
