@@ -27,20 +27,16 @@ body {
         );
 }
 
-.page {
-    min-height: 100vh;
 
-    display: flex;
+/* ======================================================
+   MAIN CONTAINER
+   ====================================================== */
 
-    justify-content: center;
-
-    padding: 45px 20px;
-}
-
-.card {
+.container {
     width: 100%;
-
     max-width: 900px;
+
+    margin: 0 auto;
 
     padding: 45px 35px;
 
@@ -56,8 +52,18 @@ body {
         0 25px 80px rgba(0, 0, 0, 0.6);
 }
 
+body {
+    padding: 45px 20px;
+}
 
-/* PROFILE */
+
+/* ======================================================
+   PROFILE
+   ====================================================== */
+
+.profile {
+    text-align: center;
+}
 
 .avatar {
     width: 120px;
@@ -79,24 +85,19 @@ h1 {
 }
 
 #channelHandle {
-    color: #888;
-}
-
-#channelHandle,
-#channelName {
-    text-align: center;
-}
-
-#channelHandle {
     margin: 0;
 
     color: #888;
 
     font-size: 15px;
+
+    text-align: center;
 }
 
 
-/* MAIN STATS */
+/* ======================================================
+   MAIN STATS
+   ====================================================== */
 
 .stats {
     display: grid;
@@ -109,6 +110,11 @@ h1 {
     margin-top: 40px;
 }
 
+
+/* Supports your current HTML */
+.stat-card,
+
+/* Supports the newer design class */
 .stat {
     padding: 25px 12px;
 
@@ -119,6 +125,10 @@ h1 {
     border-radius: 18px;
 }
 
+
+/* Supports both versions */
+
+.stat-label,
 .stat-title {
     color: #888;
 
@@ -136,7 +146,9 @@ h1 {
 }
 
 
-/* GREEN SUBSCRIBER ANIMATION */
+/* ======================================================
+   GREEN SUBSCRIBER ANIMATION
+   ====================================================== */
 
 .subscriber-increase {
     color: #00ff66;
@@ -162,7 +174,9 @@ h1 {
 }
 
 
-/* LIVE */
+/* ======================================================
+   LIVE
+   ====================================================== */
 
 .live {
     display: inline-flex;
@@ -199,7 +213,9 @@ h1 {
 }
 
 
-/* SEE MORE */
+/* ======================================================
+   SEE MORE
+   ====================================================== */
 
 .see-more {
     margin-top: 30px;
@@ -230,14 +246,17 @@ h1 {
 }
 
 
-/* EXTENDED SECTION */
+/* ======================================================
+   EXTENDED SECTION
+   ====================================================== */
 
 .more-section {
     margin-top: 30px;
 
     text-align: left;
 
-    animation: showMore 0.35s ease;
+    animation:
+        showMore 0.35s ease;
 }
 
 .hidden {
@@ -261,7 +280,9 @@ h1 {
 }
 
 
-/* SECTION */
+/* ======================================================
+   SECTION
+   ====================================================== */
 
 .section {
     margin-top: 22px;
@@ -282,7 +303,9 @@ h1 {
 }
 
 
-/* INFO */
+/* ======================================================
+   CHANNEL INFO
+   ====================================================== */
 
 .info-grid {
     display: grid;
@@ -293,6 +316,10 @@ h1 {
     gap: 12px;
 }
 
+
+/* Supports current HTML + newer design */
+
+.info-card,
 .info-box {
     padding: 17px;
 
@@ -301,6 +328,7 @@ h1 {
     border-radius: 12px;
 }
 
+.info-card span,
 .info-box span {
     display: block;
 
@@ -311,9 +339,15 @@ h1 {
     margin-bottom: 7px;
 }
 
+.info-card strong,
 .info-box strong {
     font-size: 15px;
 }
+
+
+/* ======================================================
+   DESCRIPTION
+   ====================================================== */
 
 .description {
     margin-top: 15px;
@@ -344,7 +378,9 @@ h1 {
 }
 
 
-/* BIG STATS */
+/* ======================================================
+   BIG STATS
+   ====================================================== */
 
 .big-stats {
     display: grid;
@@ -378,9 +414,23 @@ h1 {
 }
 
 
-/* TOP VIDEOS */
+/* ======================================================
+   TOP VIDEOS
+   ====================================================== */
 
 .top-video-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+
+/* Current HTML uses top-videos */
+
+.top-videos {
     display: grid;
 
     grid-template-columns:
@@ -591,7 +641,9 @@ h1 {
 }
 
 
-/* LATEST VIDEOS */
+/* ======================================================
+   LATEST VIDEOS
+   ====================================================== */
 
 .latest-videos {
     display: flex;
@@ -653,7 +705,9 @@ h1 {
 }
 
 
-/* ANALYTICS */
+/* ======================================================
+   ANALYTICS
+   ====================================================== */
 
 .analytics-filters,
 .time-filters {
@@ -788,15 +842,17 @@ h1 {
 }
 
 
-/* MOBILE */
+/* ======================================================
+   MOBILE
+   ====================================================== */
 
 @media (max-width: 700px) {
 
-    .page {
+    body {
         padding: 20px 10px;
     }
 
-    .card {
+    .container {
         padding: 35px 18px;
     }
 
@@ -817,7 +873,8 @@ h1 {
             repeat(2, 1fr);
     }
 
-    .top-video-grid {
+    .top-video-grid,
+    .top-videos {
         grid-template-columns: 1fr;
     }
 
