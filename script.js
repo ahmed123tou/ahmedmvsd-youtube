@@ -1,3 +1,4 @@
+
 // ======================================================
 // AHMED MVSD YOUTUBE STATS
 // ======================================================
@@ -8,6 +9,50 @@
 const API_KEY = "AIzaSyALf_EDaQ3GmXy_6KKul4DT3iH-xTmacSw";
 
 const CHANNEL_HANDLE = "@ahmedmvsd";
+
+
+// ======================================================
+// HARDCODED BIO LINKS
+// ======================================================
+// These are intentionally NOT taken from the YouTube API.
+// ======================================================
+
+const BIO_LINKS = [
+    {
+        title: "Discord server",
+        icon: "💬",
+        url: "https://discord.gg/C6DFAcZCTN",
+        displayUrl: "discord.gg/C6DFAcZCTN"
+    },
+
+    {
+        title: "CR7 discord server (unofficial)",
+        icon: "💬",
+        url: "https://discord.gg/drNTzZ28PH",
+        displayUrl: "discord.gg/drNTzZ28PH"
+    },
+
+    {
+        title: "Scratch account",
+        icon: "🟧",
+        url: "https://scratch.mit.edu/users/ahmedtoutouDEV/",
+        displayUrl: "scratch.mit.edu/users/ahmedtoutouDEV"
+    },
+
+    {
+        title: "Roblox account",
+        icon: "🎮",
+        url: "https://www.roblox.com/users/5069836207/profile",
+        displayUrl: "roblox.com/users/5069836207/profile"
+    },
+
+    {
+        title: "Website",
+        icon: "🌐",
+        url: "https://ahmed123tou.github.io/ahmedmvsd-youtube/",
+        displayUrl: "ahmed123tou.github.io/ahmedmvsd-youtube"
+    }
+];
 
 
 // ======================================================
@@ -360,9 +405,6 @@ function getFinalViewCount(
         Number(channelViews || 0);
 
 
-    // Prefer YouTube's channel view count.
-    // If it returns 0, use the sum of public video views.
-
     if (apiViews > 0) {
 
         return apiViews;
@@ -620,7 +662,7 @@ function createSmallVideo(
     return `
         <a
             class="video-small"
-            href="https://www.youtube.com/watch?v=${video.id}"
+            href="https://www.youtube.com/watch?v=${encodeURIComponent(video.id)}"
             target="_blank"
             rel="noopener noreferrer"
         >
@@ -781,330 +823,14 @@ function displayTopVideos() {
 
 
 // ======================================================
-// BIO LINK INFORMATION
-// ======================================================
-
-function getBioLinkInfo(
-    url
-) {
-
-    let hostname = "";
-
-
-    try {
-
-        hostname =
-            new URL(url)
-                .hostname
-                .toLowerCase()
-                .replace(
-                    /^www\./,
-                    ""
-                );
-
-    } catch {
-
-        hostname = "";
-
-    }
-
-
-    // DISCORD
-
-    if (
-        hostname === "discord.gg" ||
-        hostname === "discord.com" ||
-        hostname === "discordapp.com"
-    ) {
-
-        return {
-            icon: "💬",
-            title: "Discord"
-        };
-
-    }
-
-
-    // INSTAGRAM
-
-    if (
-        hostname === "instagram.com" ||
-        hostname === "instagr.am"
-    ) {
-
-        return {
-            icon: "📸",
-            title: "Instagram"
-        };
-
-    }
-
-
-    // TIKTOK
-
-    if (
-        hostname === "tiktok.com"
-    ) {
-
-        return {
-            icon: "🎵",
-            title: "TikTok"
-        };
-
-    }
-
-
-    // X / TWITTER
-
-    if (
-        hostname === "twitter.com" ||
-        hostname === "x.com"
-    ) {
-
-        return {
-            icon: "𝕏",
-            title: "X / Twitter"
-        };
-
-    }
-
-
-    // YOUTUBE
-
-    if (
-        hostname === "youtube.com" ||
-        hostname === "youtu.be"
-    ) {
-
-        return {
-            icon: "▶️",
-            title: "YouTube"
-        };
-
-    }
-
-
-    // GITHUB
-
-    if (
-        hostname === "github.com"
-    ) {
-
-        return {
-            icon: "🐙",
-            title: "GitHub"
-        };
-
-    }
-
-
-    // TWITCH
-
-    if (
-        hostname === "twitch.tv"
-    ) {
-
-        return {
-            icon: "🎮",
-            title: "Twitch"
-        };
-
-    }
-
-
-    // FACEBOOK
-
-    if (
-        hostname === "facebook.com" ||
-        hostname === "fb.com"
-    ) {
-
-        return {
-            icon: "👤",
-            title: "Facebook"
-        };
-
-    }
-
-
-    // SNAPCHAT
-
-    if (
-        hostname === "snapchat.com"
-    ) {
-
-        return {
-            icon: "👻",
-            title: "Snapchat"
-        };
-
-    }
-
-
-    // REDDIT
-
-    if (
-        hostname === "reddit.com" ||
-        hostname === "redd.it"
-    ) {
-
-        return {
-            icon: "🤖",
-            title: "Reddit"
-        };
-
-    }
-
-
-    // SPOTIFY
-
-    if (
-        hostname === "spotify.com" ||
-        hostname === "open.spotify.com"
-    ) {
-
-        return {
-            icon: "🎧",
-            title: "Spotify"
-        };
-
-    }
-
-
-    // STEAM
-
-    if (
-        hostname === "steamcommunity.com" ||
-        hostname === "store.steampowered.com"
-    ) {
-
-        return {
-            icon: "🎮",
-            title: "Steam"
-        };
-
-    }
-
-
-    // TELEGRAM
-
-    if (
-        hostname === "t.me" ||
-        hostname === "telegram.me" ||
-        hostname === "telegram.org"
-    ) {
-
-        return {
-            icon: "✈️",
-            title: "Telegram"
-        };
-
-    }
-
-
-    // LINKTREE
-
-    if (
-        hostname === "linktr.ee"
-    ) {
-
-        return {
-            icon: "🔗",
-            title: "Linktree"
-        };
-
-    }
-
-
-    // PATREON
-
-    if (
-        hostname === "patreon.com"
-    ) {
-
-        return {
-            icon: "❤️",
-            title: "Patreon"
-        };
-
-    }
-
-
-    // KICK
-
-    if (
-        hostname === "kick.com"
-    ) {
-
-        return {
-            icon: "🟢",
-            title: "Kick"
-        };
-
-    }
-
-
-    // NORMAL WEBSITE
-
-    return {
-        icon: "🌐",
-        title: "Website"
-    };
-
-}
-
-
-// ======================================================
-// GET CLEAN DISPLAY URL
-// ======================================================
-
-function getDisplayUrl(
-    url
-) {
-
-    try {
-
-        const parsed =
-            new URL(url);
-
-
-        let result =
-            parsed.hostname
-                .replace(
-                    /^www\./,
-                    ""
-                );
-
-
-        if (
-            parsed.pathname &&
-            parsed.pathname !== "/"
-        ) {
-
-            result +=
-                parsed.pathname;
-
-        }
-
-
-        return result;
-
-    } catch {
-
-        return url;
-
-    }
-
-}
-
-
-// ======================================================
 // BIO LINKS
 // ======================================================
+// IMPORTANT:
+// These links are hardcoded above.
+// YouTube API is NOT used to discover them.
+// ======================================================
 
-function displayBioLinks(
-    description
-) {
+function displayBioLinks() {
 
     const container =
         document.getElementById(
@@ -1119,43 +845,12 @@ function displayBioLinks(
     }
 
 
-    // Find every HTTPS/HTTP link
-
-    const urlRegex =
-        /https?:\/\/[^\s<>"']+/gi;
-
-
-    const matches =
-        description.match(
-            urlRegex
-        ) || [];
-
-
-    // Remove punctuation that can be attached
-    // to the end of a URL in a description.
-
-    const cleanedLinks =
-        matches.map(
-            url =>
-                url.replace(
-                    /[),.!?;:'"]+$/,
-                    ""
-                )
-        );
-
-
-    // Remove duplicates
-
-    const uniqueLinks =
-        [...new Set(cleanedLinks)];
-
-
-    if (uniqueLinks.length === 0) {
+    if (BIO_LINKS.length === 0) {
 
         container.innerHTML =
             `
                 <div class="bio-no-links">
-                    No links found in the channel description.
+                    No links available.
                 </div>
             `;
 
@@ -1165,62 +860,44 @@ function displayBioLinks(
 
 
     container.innerHTML =
-        uniqueLinks
-            .map(
-                url => {
+        BIO_LINKS
+            .map(link => {
 
-                    const info =
-                        getBioLinkInfo(
-                            url
-                        );
+                return `
+                    <a
+                        class="bio-link"
+                        href="${escapeUrl(link.url)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        <div class="bio-link-icon">
+                            ${escapeHtml(link.icon)}
+                        </div>
 
 
-                    const displayUrl =
-                        getDisplayUrl(
-                            url
-                        );
+                        <div class="bio-link-content">
 
-
-                    return `
-                        <a
-                            class="bio-link"
-                            href="${escapeUrl(url)}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-
-                            <div class="bio-link-icon">
-                                ${info.icon}
+                            <div class="bio-link-title">
+                                ${escapeHtml(link.title)}
                             </div>
 
 
-                            <div class="bio-link-content">
-
-                                <div class="bio-link-title">
-                                    ${escapeHtml(
-                                        info.title
-                                    )}
-                                </div>
-
-
-                                <div class="bio-link-url">
-                                    ${escapeHtml(
-                                        displayUrl
-                                    )}
-                                </div>
-
+                            <div class="bio-link-url">
+                                ${escapeHtml(link.displayUrl)}
                             </div>
 
+                        </div>
 
-                            <div class="bio-link-arrow">
-                                →
-                            </div>
 
-                        </a>
-                    `;
+                        <div class="bio-link-arrow">
+                            →
+                        </div>
 
-                }
-            )
+                    </a>
+                `;
+
+            })
             .join("");
 
 }
@@ -1236,6 +913,13 @@ function displayLatestVideos() {
         document.getElementById(
             "latestVideos"
         );
+
+
+    if (!container) {
+
+        return;
+
+    }
 
 
     const latest =
@@ -1273,7 +957,7 @@ function displayLatestVideos() {
                 return `
                     <a
                         class="latest-video"
-                        href="https://www.youtube.com/watch?v=${video.id}"
+                        href="https://www.youtube.com/watch?v=${encodeURIComponent(video.id)}"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -1468,10 +1152,10 @@ async function loadEverything() {
         // ----------------------------------------------
         // BIO LINKS
         // ----------------------------------------------
+        // No YouTube description parsing here.
+        // The five links are hardcoded above.
 
-        displayBioLinks(
-            channelData.snippet.description || ""
-        );
+        displayBioLinks();
 
 
         // ----------------------------------------------
@@ -1479,7 +1163,6 @@ async function loadEverything() {
         // ----------------------------------------------
 
         updatedElement.textContent =
-            "Last updated: " +
             new Date()
                 .toLocaleTimeString();
 
@@ -1505,6 +1188,12 @@ async function loadEverything() {
         console.log(
             "Final displayed views:",
             finalViews
+        );
+
+
+        console.log(
+            "Bio links:",
+            BIO_LINKS
         );
 
 
@@ -1540,9 +1229,15 @@ async function loadEverything() {
 // SEE MORE BUTTON
 // ======================================================
 
-document
-    .getElementById("seeMoreButton")
-    .addEventListener(
+const seeMoreButton =
+    document.getElementById(
+        "seeMoreButton"
+    );
+
+
+if (seeMoreButton) {
+
+    seeMoreButton.addEventListener(
         "click",
         () => {
 
@@ -1596,6 +1291,8 @@ document
 
         }
     );
+
+}
 
 
 // ======================================================
