@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,231 +6,128 @@
 
     <title>𝑨𝒉𝒎𝒆𝒅 — Live Stats</title>
 
-    <link
-        rel="icon"
-        type="image/jpeg"
-        href="https://files.catbox.moe/tmwglr.jpg"
-    >
+    <link rel="icon" type="image/jpeg" href="https://files.catbox.moe/tmwglr.jpg">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="page">
-
-    <main class="card">
+    <div class="container">
 
         <!-- PROFILE -->
+        <div class="profile">
+            <img id="avatar" class="avatar" src="" alt="Channel Avatar">
 
-        <img
-            id="avatar"
-            class="avatar"
-            src=""
-            alt="Ahmed MVSD"
-        >
-
-        <h1 id="channelName">Ahmed MVSD</h1>
-
-        <p id="channelHandle">@ahmedmvsd</p>
+            <h1 id="channelName">Loading...</h1>
+            <p id="channelHandle">@ahmedmvsd</p>
+        </div>
 
 
         <!-- MAIN STATS -->
-
         <div class="stats">
 
-            <div class="stat">
-                <div class="stat-title">Subscribers</div>
-
-                <div id="subscribers" class="stat-number">
-                    Loading...
-                </div>
+            <div class="stat-card">
+                <div class="stat-number" id="subscribers">0</div>
+                <div class="stat-label">Subscribers</div>
             </div>
 
-
-            <div class="stat">
-                <div class="stat-title">Views</div>
-
-                <div id="views" class="stat-number">
-                    Loading...
-                </div>
+            <div class="stat-card">
+                <div class="stat-number" id="views">0</div>
+                <div class="stat-label">Views</div>
             </div>
 
-
-            <div class="stat">
-                <div class="stat-title">Videos</div>
-
-                <div id="videos" class="stat-number">
-                    Loading...
-                </div>
+            <div class="stat-card">
+                <div class="stat-number" id="videos">0</div>
+                <div class="stat-label">Videos</div>
             </div>
 
         </div>
 
 
-        <!-- LIVE STATUS -->
-
-        <div class="live">
-
-            <span class="live-dot"></span>
-
-            LIVE STATS
-
-        </div>
-
-
-        <div id="updated" class="updated">
-            Loading...
+        <!-- LAST UPDATED -->
+        <div class="updated">
+            Last updated: <span id="updated">Loading...</span>
         </div>
 
 
         <!-- SEE MORE -->
-
-        <button
-            id="seeMoreButton"
-            class="see-more"
-        >
+        <button id="seeMoreButton" class="see-more">
             See More
         </button>
 
 
-        <!-- EXTENDED DASHBOARD -->
+        <!-- EXTENDED INFORMATION -->
+        <div id="moreSection" class="more-section hidden">
 
-        <section
-            id="moreSection"
-            class="more-section hidden"
-        >
-
-
-            <!-- CHANNEL INFORMATION -->
-
+            <!-- CHANNEL INFO -->
             <div class="section">
 
-                <h2>Channel Information</h2>
-
+                <h2>Channel Info</h2>
 
                 <div class="info-grid">
 
-                    <div class="info-box">
-
+                    <div class="info-card">
                         <span>Name</span>
-
-                        <strong id="infoName">
-                            —
-                        </strong>
-
+                        <strong id="infoName">Loading...</strong>
                     </div>
 
-
-                    <div class="info-box">
-
+                    <div class="info-card">
                         <span>Username</span>
-
-                        <strong id="infoUsername">
-                            —
-                        </strong>
-
+                        <strong id="infoUsername">Loading...</strong>
                     </div>
 
-
-                    <div class="info-box">
-
+                    <div class="info-card">
                         <span>Created</span>
-
-                        <strong id="createdDate">
-                            —
-                        </strong>
-
+                        <strong id="createdDate">Loading...</strong>
                     </div>
 
-
-                    <div class="info-box">
-
+                    <div class="info-card">
                         <span>Channel Age</span>
-
-                        <strong id="channelAge">
-                            —
-                        </strong>
-
+                        <strong id="channelAge">Loading...</strong>
                     </div>
 
                 </div>
 
-
                 <div class="description">
-
-                    <h3>Description</h3>
-
                     <p id="channelDescription">
-                        Loading...
+                        Loading description...
                     </p>
-
                 </div>
 
             </div>
 
 
-            <!-- TOTAL STATISTICS -->
-
+            <!-- TOTAL STATS -->
             <div class="section">
 
-                <h2>Total Statistics</h2>
+                <h2>Total Stats</h2>
 
+                <div class="stats">
 
-                <div class="big-stats">
-
-                    <div class="big-stat">
-
-                        <span>Subscribers</span>
-
-                        <strong id="totalSubscribers">
-                            —
-                        </strong>
-
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalSubscribers">0</div>
+                        <div class="stat-label">Subscribers</div>
                     </div>
 
-
-                    <div class="big-stat">
-
-                        <span>Total Views</span>
-
-                        <strong id="totalViews">
-                            —
-                        </strong>
-
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalViews">0</div>
+                        <div class="stat-label">Views</div>
                     </div>
 
-
-                    <div class="big-stat">
-
-                        <span>Total Videos</span>
-
-                        <strong id="totalVideos">
-                            —
-                        </strong>
-
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalVideos">0</div>
+                        <div class="stat-label">Videos</div>
                     </div>
 
-
-                    <div class="big-stat">
-
-                        <span>Total Likes</span>
-
-                        <strong id="totalLikes">
-                            —
-                        </strong>
-
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalLikes">0</div>
+                        <div class="stat-label">Likes</div>
                     </div>
 
-
-                    <div class="big-stat">
-
-                        <span>Total Comments</span>
-
-                        <strong id="totalComments">
-                            —
-                        </strong>
-
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalComments">0</div>
+                        <div class="stat-label">Comments</div>
                     </div>
 
                 </div>
@@ -240,44 +136,31 @@
 
 
             <!-- TOP VIDEOS -->
-
             <div class="section">
 
                 <h2>Top Videos</h2>
 
-
-                <div class="top-video-grid">
+                <div class="top-videos">
 
                     <div class="top-video">
-
                         <h3>Most Viewed</h3>
-
                         <div id="mostViewed">
                             Loading...
                         </div>
-
                     </div>
 
-
                     <div class="top-video">
-
                         <h3>Most Liked</h3>
-
                         <div id="mostLiked">
                             Loading...
                         </div>
-
                     </div>
 
-
                     <div class="top-video">
-
                         <h3>Most Commented</h3>
-
                         <div id="mostCommented">
                             Loading...
                         </div>
-
                     </div>
 
                 </div>
@@ -285,16 +168,12 @@
             </div>
 
 
-            <!-- LINKS -->
-
+            <!-- LINKS IN BIO -->
             <div class="section">
 
                 <h2>Links in Bio</h2>
 
-                <div
-                    id="bioLinks"
-                    class="links"
-                >
+                <div id="bioLinks" class="links">
                     Loading...
                 </div>
 
@@ -302,28 +181,22 @@
 
 
             <!-- LATEST VIDEOS -->
-
             <div class="section">
 
                 <h2>Latest Videos</h2>
 
-                <div
-                    id="latestVideos"
-                    class="latest-videos"
-                >
+                <div id="latestVideos">
                     Loading...
                 </div>
 
             </div>
 
-        </section>
+        </div>
 
-    </main>
-
-</div>
+    </div>
 
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
