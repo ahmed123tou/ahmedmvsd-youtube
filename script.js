@@ -1,4 +1,3 @@
-
 // ======================================================
 // AHMED MVSD YOUTUBE STATS
 // ======================================================
@@ -6,7 +5,7 @@
 // Replace MY_API_KEY with your own YouTube Data API key.
 // ======================================================
 
-const API_KEY = "AIzaSyALf_EDaQ3GmXy_6KKul4DT3iH-xTmacSw";
+const API_KEY = "api_key";
 
 const CHANNEL_HANDLE = "@ahmedmvsd";
 
@@ -1186,123 +1185,6 @@ document
                     "See More";
 
             }
-
-        }
-    );
-
-
-// ======================================================
-// ANALYTICS FILTERS
-// ======================================================
-
-document
-    .querySelectorAll(".filter")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                document
-                    .querySelectorAll(".filter")
-                    .forEach(
-                        b =>
-                            b.classList.remove(
-                                "active"
-                            )
-                    );
-
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                const metric =
-                    button.dataset.metric;
-
-
-                document.getElementById(
-                    "analyticsTitle"
-                ).textContent =
-                    metric
-                        .charAt(0)
-                        .toUpperCase() +
-                    metric.slice(1);
-
-            }
-        );
-
-    });
-
-
-// ======================================================
-// TIME FILTERS
-// ======================================================
-
-document
-    .querySelectorAll(".time")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                document
-                    .querySelectorAll(".time")
-                    .forEach(
-                        b =>
-                            b.classList.remove(
-                                "active"
-                            )
-                    );
-
-
-                button.classList.add(
-                    "active"
-                );
-
-            }
-        );
-
-    });
-
-
-// ======================================================
-// CUSTOM TIME
-// ======================================================
-
-document
-    .getElementById("customApply")
-    .addEventListener(
-        "click",
-        () => {
-
-            document
-                .querySelectorAll(".time")
-                .forEach(
-                    b =>
-                        b.classList.remove(
-                            "active"
-                        )
-                );
-
-
-            const amount =
-                document.getElementById(
-                    "customAmount"
-                ).value;
-
-
-            const unit =
-                document.getElementById(
-                    "customUnit"
-                ).value;
-
-
-            console.log(
-                `Custom analytics period: ${amount} ${unit}`
-            );
 
         }
     );
